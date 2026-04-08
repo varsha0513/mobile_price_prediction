@@ -13,3 +13,5 @@ def test_prediction():
     })
     assert response.status_code == 200
     assert "price_range" in response.json()
+    assert "label" in response.json()
+    assert response.json()["label"] in ["Low", "Medium", "High", "Very High"]

@@ -63,7 +63,11 @@ def get_prediction(data: MobileFeatures):
         
         result = predict(data.features)
         logger.info(f"Prediction successful: {result}")
-        return {"price_range": result}
+        price_range = int(result)
+        return {
+            "price_range": price_range,
+            "label": ["Low", "Medium", "High", "Very High"][price_range]
+        }
     
     except Exception as e:
         logger.error(f"Prediction failed: {str(e)}")
