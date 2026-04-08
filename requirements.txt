@@ -6,4 +6,4 @@ numpy
 joblib
 python-dotenv
 requests
-
+pytest 

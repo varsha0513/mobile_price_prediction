@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: mobile-price-prediction
+    env: docker
+    plan: starter
+    
+    # GitHub integration
+    repo: https://github.com/varsha0513/mobile_price_prediction
+    branch: main
+    
+    # Docker build
+    dockerfilePath: ./Dockerfile
+    
+    # Environment variables
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"
+    
+    # Health check
+    healthCheckPath: /health
+    
+    # Auto-deploy on push to main
+    autoDeploy: true
+    
+    # Start command
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    
+    # Ports
+    ports:
+      - number: 8000
+        protocol: HTTP
+    
+    # Disk size
+    disk:
+      name: data
+      sizeGB: 10
